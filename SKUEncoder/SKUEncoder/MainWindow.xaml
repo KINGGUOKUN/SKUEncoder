@@ -1,0 +1,74 @@
+﻿<Window x:Class="SKUEncoder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SKU编码器" Height="450" Width="700">
+    <Window.Resources>
+        <Style TargetType="{x:Type ToggleButton}">
+            <Setter Property="IsThreeState" Value="False"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Name="border" BorderBrush="LightBlue" BorderThickness="0,0,0,2">
+                            <ContentControl Content="{TemplateBinding Content}"
+                                            Width="{TemplateBinding Width}"
+                                            Height="{TemplateBinding Height}"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="LightYellow"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border"  Property="Background" Value="Orange"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Name="lblTitle" HorizontalAlignment="Center" Height="40" Content="SKU编码器" FontSize="20"></Label>
+            <Border BorderBrush="Gray" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+        <GroupBox Grid.Row="1" Grid.Column="0">
+            <StackPanel>
+                <ToggleButton Name="tbOne" Height="40" Click="tbOne_Click">
+                    <ToggleButton.Content>
+                        <TextBlock Text="一级目录" VerticalAlignment="Center" TextAlignment="Center" FontSize="16"/>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton Name="tbTwo" Height="40" Click="tbTwo_Click">
+                    <ToggleButton.Content>
+                        <TextBlock Text="二级目录" VerticalAlignment="Center" TextAlignment="Center" FontSize="16"/>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton Name="tbAtt" Height="40" Click="tbAtt_Click">
+                    <ToggleButton.Content>
+                        <TextBlock Text="属    性" VerticalAlignment="Center" TextAlignment="Center" FontSize="16"/>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton Name="tbSKU" Height="40" Click="tbSKU_Click">
+                    <ToggleButton.Content>
+                        <TextBlock Text="SKU编码" VerticalAlignment="Center" TextAlignment="Center" FontSize="16"/>
+                    </ToggleButton.Content>
+                </ToggleButton>
+            </StackPanel>
+        </GroupBox>
+        <Frame Name="frmSKUEncoder" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.Column="1"/>
+    </Grid>
+</Window>
